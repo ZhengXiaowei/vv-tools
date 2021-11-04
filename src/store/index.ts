@@ -1,12 +1,26 @@
-import { createStore } from 'vuex'
+import { defineStore } from "pinia";
 
-export default createStore({
-  state: {
-  },
-  mutations: {
-  },
+interface IRecordItem {
+  id: number | string;
+  type: string;
+  preName: string;
+  name: string;
+}
+
+const useAppStore = defineStore<
+  string,
+  { records: IRecordItem[] },
+  any,
+  { addRecord: (item: IRecordItem) => void }
+>("app", {
+  state: () => ({
+    records: []
+  }),
   actions: {
-  },
-  modules: {
+    addRecord(item: IRecordItem) {
+      this.records.push(item);
+    }
   }
-})
+});
+
+export default useAppStore;

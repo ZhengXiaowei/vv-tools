@@ -1,0 +1,18 @@
+@import "./components/index.scss";
+
+.record-container {
+  margin: 40px;
+}
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn {
+    & + .btn {
+      margin-left: 10px;
+    }
+  }
+}
