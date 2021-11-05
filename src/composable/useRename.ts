@@ -1,7 +1,7 @@
 /*
  * @Author       : 晓晓晓晓丶vv
  * @Date         : 2021-11-04 20:12:56
- * @LastEditTime : 2021-11-04 20:44:43
+ * @LastEditTime : 2021-11-05 15:17:39
  * @LastEditors  : 晓晓晓晓丶vv
  * @Description  : 重命名composable
  */
@@ -38,12 +38,13 @@ const doRenameFile = (pathStr: string, index: string | number) => {
     .replace(/\s+/g, "_");
 
   const oldPath = pathStr;
-  const newPath = path.join(fileData.dir, `${newName + ext}`);
+  const newPath = path.join(fileData.dir, newName + ext);
 
   fs.rename(oldPath, newPath, () => {
     const item = {
       id: index,
       type: "image",
+      typeName: "",
       preName: name + ext,
       name: newName + ext
     };
