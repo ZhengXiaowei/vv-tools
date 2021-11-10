@@ -5,7 +5,8 @@
         <template v-for="record in records" :key="record.id">
           <n-p>
             <n-tag :type="record.type">{{ record.typeName }}</n-tag>
-            已经将 {{ record.preName }} 重命名成 {{ record.name }}
+            已经将 <n-tag>{{ record.preName }}</n-tag> 重命名成
+            <n-tag type="error">{{ record.name }}</n-tag>
           </n-p>
         </template>
       </div>

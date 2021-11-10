@@ -1,7 +1,7 @@
 /*
  * @Author       : 晓晓晓晓丶vv
  * @Date         : 2021-11-04 20:12:56
- * @LastEditTime : 2021-11-05 15:17:39
+ * @LastEditTime : 2021-11-10 15:24:11
  * @LastEditors  : 晓晓晓晓丶vv
  * @Description  : 重命名composable
  */
@@ -32,10 +32,8 @@ const doRenameFile = (pathStr: string, index: string | number) => {
   const fileData = path.parse(pathStr);
   const ext = fileData.ext;
   const name = fileData.name;
-  const newName = name
-    .replace(/[(\s+)|()|_|-]/g, " ")
-    .trim()
-    .replace(/\s+/g, "_");
+  const reg = new RegExp(appStore.replaceReg, "ig");
+  const newName = name.replace(reg, appStore.replaceStr).trim();
 
   const oldPath = pathStr;
   const newPath = path.join(fileData.dir, newName + ext);

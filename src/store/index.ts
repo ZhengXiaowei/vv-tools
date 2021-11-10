@@ -4,14 +4,9 @@ interface IState {
   records: IRecordItem[];
   typeName: Record<string, string>;
   type: Record<string, string>;
-}
-
-interface IGetters<T> {
-  recordGetters: (state: IState) => IRecordItem[];
-}
-
-interface IActions {
-  addRecord: (item: IRecordItem) => void;
+  currentPath: string;
+  replaceReg: string;
+  replaceStr: string;
 }
 
 interface IRecordItem {
@@ -24,6 +19,9 @@ interface IRecordItem {
 
 const useAppStore = defineStore("app", {
   state: (): IState => ({
+    currentPath: "",
+    replaceReg: "[^A-Z0-9]+",
+    replaceStr: "_",
     records: [],
     type: {
       image: "success",
@@ -50,6 +48,17 @@ const useAppStore = defineStore("app", {
   actions: {
     addRecord(item: IRecordItem) {
       this.records.push(item);
+    },
+    setFilePath(path: string) {
+      this.currentPath = path;
+    },
+    setReplaceReg(reg: string) {
+      if (reg) this.replaceReg = reg;
+      else this.replaceReg = "[^A-Z0-9]+";
+    },
+    setReplaceStr(str: string) {
+      if (str) this.replaceStr = str;
+      else this.replaceStr = "_";
     }
   }
 });

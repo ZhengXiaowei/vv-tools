@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <upload-box @upload="doAction" />
+    <upload-box @choose="doAction" @upload="doUpload" />
     <div class="record-container">
       <record-box />
     </div>
@@ -15,6 +15,7 @@ import UploadBox from "@/components/UploadBox.vue";
 import RecordBox from "@/components/RecordBox.vue";
 
 import useRename from "@/composable/useRename";
+import useAppStore from "@/store";
 
 const Home = defineComponent({
   components: {
@@ -22,17 +23,24 @@ const Home = defineComponent({
     RecordBox
   },
   setup() {
+    const appStore = useAppStore();
+
     const doAction = () => {
       remote.dialog
         .showOpenDialog({ properties: ["openDirectory"] })
         .then((file) => {
-          if (file.filePaths.length)
-            // 有文件 只读取第一层
-            useRename(file.filePaths[0]);
+          if (file.filePaths.length) {
+            appStore.$reset();
+            appStore.setFilePath(file.filePaths[0]);
+          }
         });
     };
 
-    return { doAction };
+    const doUpload = () => {
+      useRename(appStore.currentPath);
+    };
+
+    return { doAction, doUpload };
   }
 });
 
