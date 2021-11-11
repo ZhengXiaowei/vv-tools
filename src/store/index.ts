@@ -21,7 +21,7 @@ const useAppStore = defineStore("app", {
   state: (): IState => ({
     currentPath: "",
     replaceReg: "[^A-Z0-9]+",
-    replaceStr: "_",
+    replaceStr: "",
     records: [],
     type: {
       image: "success",
@@ -58,7 +58,7 @@ const useAppStore = defineStore("app", {
     },
     setReplaceStr(str: string) {
       if (str) this.replaceStr = str;
-      else this.replaceStr = "_";
+      else this.replaceStr = "";
     }
   }
 });

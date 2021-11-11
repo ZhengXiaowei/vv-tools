@@ -26,7 +26,7 @@
         <n-input
           v-model:value="regForm.replaceText"
           class="count-text"
-          :placeholder="defaultRegStr"
+          placeholder="默认为空字符串"
         />
       </div>
     </div>
@@ -51,7 +51,6 @@ const UploadBox = defineComponent({
 
     const path = computed(() => appStore.currentPath);
     const defaultReg = computed(() => appStore.replaceReg);
-    const defaultRegStr = computed(() => appStore.replaceStr);
 
     const regForm = reactive({
       regText: "",
@@ -72,7 +71,7 @@ const UploadBox = defineComponent({
       }
     );
 
-    return { path, defaultReg, defaultRegStr, regForm };
+    return { path, defaultReg, regForm };
   }
 });
 

@@ -1,5 +1,10 @@
 {
   "name": "vv-tools",
+  "author": {
+    "name": "晓晓晓晓丶vv",
+    "email": "xw180236@gmail.com"
+  },
+  "description": "a tools of development by vv",
   "version": "0.1.0",
   "private": true,
   "scripts": {
