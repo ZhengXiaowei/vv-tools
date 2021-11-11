@@ -26,10 +26,11 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import anime from "animejs";
+import useTransition from "@/composable/useTransition";
 
 const route = useRoute();
 const router = useRouter();
+const { onBeforeEnter, onEnter, onLeave } = useTransition();
 
 const showNav = ref(false);
 
@@ -48,55 +49,12 @@ const onBack = () => {
   router.back();
 };
 
-const onBeforeEnter = (el: Element) => {
-  const ele = el as HTMLElement;
-  ele.style.transform = "translateX(-100%)";
-};
-
 const onBeforeLeave = (el: Element) => {
   showNav.value = false;
-};
-
-const onEnter = (el: Element, done: () => void) => {
-  anime({
-    targets: el,
-    translateX: [
-      {
-        value: "-100%"
-      },
-      {
-        value: 0,
-        duration: 800
-      }
-    ],
-    easing: "easeOutElastic(1, .8)",
-    complete: () => {
-      done();
-    }
-  });
 };
 
 const onEntered = () => {
   if (subPage.value) showNav.value = true;
   else showNav.value = false;
-};
-
-const onLeave = (el: Element, done: () => void) => {
-  anime({
-    targets: el,
-    translateX: [
-      {
-        value: 0
-      },
-      {
-        value: "-100%",
-        duration: 800
-      }
-    ],
-    easing: "easeOutElastic(1, .8)",
-    complete: () => {
-      done();
-    }
-  });
 };
 </script>
