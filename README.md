@@ -1,4 +1,4 @@
-# vv-rename
+# vv-tools
 
 ## Project setup
 ```

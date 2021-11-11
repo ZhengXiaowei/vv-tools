@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="rename-wrap">
     <upload-box @choose="doAction" @upload="doUpload" />
     <div class="record-container">
       <record-box />

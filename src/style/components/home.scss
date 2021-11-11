@@ -1,0 +1,33 @@
+.home-wrap {
+  &__item {
+    cursor: pointer;
+    height: 140px;
+
+    .n-card__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .n-icon {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .title-box {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .main-title {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .en-title {
+      font-size: 14px;
+      color: #999;
+    }
+  }
+}

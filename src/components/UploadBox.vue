@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, reactive, toRefs, watch } from "vue";
+import { defineComponent, computed, reactive, watch } from "vue";
 import { FileTrayFull } from "@vicons/ionicons5";
 import useAppStore from "@/store";
 

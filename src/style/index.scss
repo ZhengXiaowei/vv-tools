@@ -1,7 +1,15 @@
 @import "./components/index.scss";
 
-html {
-  background: #fff;
+html,
+body,
+p {
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s;
+}
+
+.app-container {
+  padding: 40px;
 }
 
 .record-container {
