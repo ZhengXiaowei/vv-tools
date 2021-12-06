@@ -4,6 +4,9 @@ import { app, protocol, BrowserWindow } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 import path from "path";
+
+import { installTray, getPath } from "./config/config.tray";
+
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // Scheme must be registered before the app is ready
@@ -11,9 +14,16 @@ protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } }
 ]);
 
-async function createWindow() {
+let win: BrowserWindow | null = null;
+
+async function createWindow(routePath?: string) {
   // Create the browser window.
-  const win = new BrowserWindow({
+  const appRoute = getPath(routePath);
+
+  // 单窗口 如果存在其他窗口 先销毁
+  if (win) win.destroy();
+
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     backgroundColor: "#fff",
@@ -29,12 +39,12 @@ async function createWindow() {
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string);
+    await win.loadURL(appRoute);
     if (!process.env.IS_TEST) win.webContents.openDevTools();
   } else {
     createProtocol("app");
     // Load the index.html when not in development
-    win.loadURL("app://./index.html");
+    win.loadURL(appRoute);
   }
 }
 
@@ -66,6 +76,9 @@ app.on("ready", async () => {
     }
   }
   createWindow();
+  (win as BrowserWindow).hide();
+
+  installTray(createWindow);
 });
 
 // Exit cleanly on request from parent process in development mode.

@@ -9,4 +9,9 @@ import componentRegister from "./plugins/app";
 
 const app = createApp(App);
 
-componentRegister(app).use(router).mount("#app");
+componentRegister(app);
+app.use(router);
+
+router.isReady().then((_) => {
+  app.mount("#app");
+});

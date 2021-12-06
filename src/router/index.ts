@@ -1,18 +1,9 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import Home from "@/views/Home.vue";
+
 import Rename from "@/views/Rename.vue";
 import ImageCompressor from "@/views/ImageCompressor.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-    meta: {
-      title: "Home",
-      enName: "home"
-    }
-  },
   {
     path: "/rename",
     name: "Rename",

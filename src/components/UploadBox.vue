@@ -46,6 +46,7 @@ const UploadBox = defineComponent({
   components: {
     FileTrayFull
   },
+  emits: ["choose", "upload"],
   setup() {
     const appStore = useAppStore();
 
